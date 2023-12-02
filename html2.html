@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Form</title>
+</head>
+<body>
+    <!--panel logowania-->
+    <div class="login-container">
+        <h2>Login Form</h2>
+        <form id="loginForm" onsubmit="validateForm(); return false;">
+            <label for="login">Login:</label>
+            <input type="text" id="login" name="login" placeholder="Enter your login" required>
+    <!--panel hasła-->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <div id="password-error" class="error-message"></div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+<!--skrypt JS w celu walidacji hasła-->
+    <script>
+        function validateForm() {
+            // Pobieranie wartości loginu i hasła z formularza
+            var login = document.getElementById('login').value;
+            var password = document.getElementById('password').value;
+            var passwordError = document.getElementById('password-error');
+
+            // Walidacja hasła: Minimum 8 znaków
+            if (password.length < 8) {
+                // Wyświetlanie komunikatu o błędzie, jeśli hasło jest za krótkie
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+            } else {
+                // Czyszczenie komunikatu o błędzie i wyświetlanie alertu o pomyślnym logowaniu
+                passwordError.textContent = '';
+                alert("Login successful!");
+                
+            }
+        }
+    </script>
+        
+        
+        <style>
+            /* Stylizacja całego dokumentu */
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            /* Stylizacja kontenera formularza logowania */
+            .login-container {
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                text-align: center;
+            }
+            /* Stylizacja nagłówka formularza */
+            h2 {
+                color: #333;
+            }
+    
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+    
+            label {
+                margin-bottom: 8px;
+                color: #555;
+            }
+            /* Stylizacja pól formularza */
+            input {
+                padding: 12px;
+                margin-bottom: 16px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+            /* Stylizacja komunikatu o błędzie hasła */
+            .error-message {
+                color: #ff0000;
+                margin-top: 5px;
+            }
+            /* Stylizacja przycisku formularza */
+            button {
+                background-color: #4caf50;
+                color: #fff;
+                padding: 12px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+    
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+</body>
+</html>
