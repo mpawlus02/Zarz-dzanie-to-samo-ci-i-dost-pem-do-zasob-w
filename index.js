@@ -18,12 +18,13 @@ function authentication(req, res, next) {
 	'base64').toString().split(':');
 	var user = auth[0];
 	var pass = auth[1];
- 
+ // Sprawdzenie, czy użytkownik i hasło są poprawne
 	if (user === 'admin' && pass === 'admin') {
  
-		// If Authorized user
+		//Jeśli jest autoryzowany przechodzimy dalej
 		next();
 	} else {
+        // Jeśli użytkownik nie jest autoryzowany, zwracamy błąd autoryzacji
 		var err = new Error('You are not authenticated!');
 		res.setHeader('WWW-Authenticate', 'Basic');
 		err.status = 401;
@@ -32,11 +33,12 @@ function authentication(req, res, next) {
  
 }
  
-// First step is the authentication of the client
+//Użycie funkcji autoryzacji dla wszystkich scieżek
 app.use(authentication)
+//Obsługa plików z folderu public 
 app.use(express.static(path.join(__dirname, 'public')));
  
-// Server setup
+
 app.listen((3000), () => {
 	console.log("Server is Running");
 })
